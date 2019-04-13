@@ -38,7 +38,8 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-    throw new Error('Not implemented');
+    var arr = new Array(len).fill(0);
+    return arr.map((_, index) => 2 * index + 1);
 }
 
 
@@ -237,7 +238,8 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-    throw new Error('Not implemented');
+    var sum = 0;
+    return arr.map(item => sum += item);
 }
 
 /**
@@ -380,7 +382,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-    throw new Error('Not implemented');
+    return arr.filter(value => value === item).length;
 }
 
 /**
@@ -424,7 +426,7 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-    throw new Error('Not implemented');
+    return arr.sort((a, b) => a.country.localeCompare(b.country) || a.city.localeCompare(b.city));
 }
 
 /**
@@ -463,7 +465,10 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-    throw new Error('Not implemented');
+    var arr = [];
+    arr.length = end - start + 1;
+    arr.fill(0);
+    return arr.map((i, index) => start + index);
 }
 
 /**
@@ -528,7 +533,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+    return arr.map(childrenSelector).reduce((accumulator, currentValue) => accumulator.concat(currentValue));
 }
 
 
@@ -567,8 +572,12 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
+
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+    var middle = arr.length / 2;
+    var head = arr.splice(0, middle);
+    var tail = arr.splice(-middle);
+    return [...tail,...arr,...head];
 }
 
 
