@@ -270,22 +270,20 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    // var splitccn = ccn.toString().split('');
-    // var evenValue = 0;
-    // var oddValue = 0;
-    // for (var i = 0; i < splitccn.length; i++) {
-    //     if (i % 2 === 0) {
-    //         if (splitccn[i] * 2 >= 10) {
-    //             evenValue += splitccn[i] * 2 - 9;
-    //         } else {
-    //             evenValue += splitccn[i] * 2;
-    //         }
-    //     } else {
-    //         oddValue += parseInt(splitccn[i])
-    //     }
-    // }
-    // return ((evenValue + oddValue) % 10 === 0);
-    throw new Error('Not implemented');
+    let ccnStr = String(ccn);
+    let result = Number(ccnStr[ccnStr.length-1]);
+    for (let i = 0; i < ccnStr.length - 1; i++) {
+        let card = Number(ccnStr[i]);
+        if (i % 2 === ccnStr.length % 2) {
+            card *= 2;
+        }
+        if (card > 9) {
+            card -= 9;
+        }
+        result += card;
+    }
+    return result % 10 === 0;
+
 }
 
 
