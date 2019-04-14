@@ -33,7 +33,27 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    var bottle = 99;
+    var text1, text2;
+
+    while (bottle > 0) {
+        text1 = bottle + ' bottles of beer on the wall, ' + bottle + ' bottles of beer.';
+        if (bottle === 1) {
+            text1 = '1 bottle of beer on the wall, 1 bottle of beer.'
+        }
+        yield text1;
+        bottle--;
+        text2 = 'Take one down and pass it around, ' + bottle + ' bottles of beer on the wall.';
+        if (bottle === 1) {
+            text2 = 'Take one down and pass it around, ' + bottle + ' bottle of beer on the wall.';
+        }
+        if (bottle === 0) {
+            text2 = 'Take one down and pass it around, no more bottles of beer on the wall.'
+        }
+        yield text2;
+    }
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -47,9 +67,14 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    var num1 = 0, num2 = 1;
+    while (true) {
+        var count = num1;
+        num1 = num2;
+        num2 = count + num1;
+        yield count;
+    }
 }
-
 
 /**
  * Traverses a tree using the depth-first strategy
