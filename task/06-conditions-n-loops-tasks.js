@@ -184,7 +184,18 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    for(var i = 0; i < str.length; i++) {
+    var count = 1;
+    for (var j = 0; j < str.length; j++) {
+      if (str[i] === str[j] && i!==j) {
+          count++;
+      }
+    }
+    if (count === 1 ) {
+        return str[i];
+    }
+  }
+  return null;
 }
 
 
@@ -546,7 +557,7 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+
 }
 
 
