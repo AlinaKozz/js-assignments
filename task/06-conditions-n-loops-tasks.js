@@ -210,7 +210,11 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    var min = Math.min(a, b);
+    var max = Math.max(a, b);
+    var open = (isStartIncluded) ? '[' : '(';
+    var close = (isEndIncluded) ? ']' : ')';
+    return open + min + ', ' + max + close;
 }
 
 
@@ -292,7 +296,7 @@ function isCreditCardNumber(ccn) {
  *   step1 : find sum of all digits
  *   step2 : if sum > 9 then goto step1 otherwise return the sum
  *
- * @param {number} n
+ * @param {number}
  * @return {number}
  *
  * @example:
@@ -382,7 +386,48 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    var difference = endDate - startDate;
+    var sec = 1000, min = 1000 * 60, hour = 1000 * 60 * 60,
+        day = hour * 24, month = day * 30, year = day * 365;
+
+    var x = function (value) {
+        if (value % 1 > 0.5) {
+            return Math.ceil(value);
+        }
+        return Math.floor(value);
+    };
+
+    if (difference <= sec*45) {
+        return 'a few seconds ago';
+    }
+    if (difference <= sec*90) {
+        return 'a minute ago';
+    }
+    if (difference <= min*45) {
+        return x(difference/min) + ' minutes ago';
+    }
+    if (difference <= min*90) {
+        return 'an hour ago';
+    }
+    if (difference <= hour*22) {
+        return x(difference/hour) + ' hours ago';
+    }
+    if (difference <= hour*36) {
+        return 'a day ago';
+    }
+    if (difference <= day*25) {
+        return x(difference/day) + ' days ago';
+    }
+    if (difference <= day*45) {
+        return 'a month ago';
+    }
+    if (difference <= day*345) {
+        return x(difference/month) + ' months ago';
+    }
+    if (difference <= day*545) {
+        return 'a year ago';
+    }
+    return x(difference/year) + ' years ago';
 }
 
 
