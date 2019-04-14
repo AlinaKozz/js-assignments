@@ -273,7 +273,10 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-    throw new Error('Not implemented');
+    return arr.reduce(function (accumulator, currentValue, index) {
+        var item = new Array(index + 1).fill(currentValue);
+        return [...accumulator, ...item];
+    }, []);
 }
 
 
@@ -448,7 +451,14 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-    throw new Error('Not implemented');
+    var arr = Array.apply(null, new Array(n));
+    return arr.map((curValue1, index1) => arr.map(function(curValue2, index2) {
+        if (index1 === index2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }));
 }
 
 /**
@@ -517,7 +527,18 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-    throw new Error('Not implemented');
+    var map = new Map();
+
+    array.map(function(item) {
+        var val = array.reduce(function(values, curr) {
+            if (keySelector(item) === keySelector(curr)) return values.concat(valueSelector(curr));
+            else return values;
+        }, []);
+
+        map.set(keySelector(item), val);
+    });
+
+    return map;
 }
 
 
@@ -550,7 +571,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    return indexes.reduce((acc, cur) => acc[cur], arr);
 }
 
 
@@ -577,7 +598,7 @@ function swapHeadAndTail(arr) {
     var middle = arr.length / 2;
     var head = arr.splice(0, middle);
     var tail = arr.splice(-middle);
-    return [...tail,...arr,...head];
+    return [...tail, ...arr, ...head];
 }
 
 
